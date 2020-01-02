@@ -13,7 +13,8 @@ function AircraftStore (opts) {
 }
 
 AircraftStore.prototype.addMessage = function (msg) {
-  const aircraft = this._index[msg.icao] = this._index[msg.icao] || new Aircraft()
+  let icao = msg instanceof Array ? parseInt(msg[4], 16) : msg.icao;
+  const aircraft = this._index[icao] = this._index[icao] || new Aircraft()
   aircraft.update(msg)
 }
 
